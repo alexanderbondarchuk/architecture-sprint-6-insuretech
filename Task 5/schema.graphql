@@ -1,0 +1,72 @@
+type Query {
+  """
+  Получить информацию о клиенте по ID
+  """
+  client(id: ID!): Client
+
+  """
+  Список документов клиента
+  """
+  documents(clientId: ID!): [Document]
+
+  """
+  Информация о родственниках клиента
+  """
+  relatives(clientId: ID!): [Relative]
+}
+
+"""
+Информация о клиенте
+"""
+type Client {
+  id: ID!
+  name: String!
+  age: Int
+  documents: [Document]
+  relatives: [Relative]
+}
+
+"""
+Документ клиента
+"""
+type Document {
+  id: ID!
+  type: String!
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+"""
+Родственник клиента
+"""
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
+
+### Получение информации о клиенте
+#query GetClientBasicInfo($clientId: ID!) {
+#  client(id: $clientId) {
+#    id
+#    name
+#    age
+#  }
+#}
+
+### Получение клиента с его документами
+#query GetClientWithDocuments($clientId: ID!) {
+#  client(id: $clientId) {
+#    id
+#    name
+#    documents {
+#      id
+#      type
+#      number
+#      issueDate
+#    }
+#  }
+#}
